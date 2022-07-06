@@ -17,5 +17,13 @@ namespace Battleships.Test
             var guesses = new[] { "7:0", "3:3" };
             Game.Play(ships, guesses).Should().Be(0);
         }
+
+        [Fact]
+        public void TestPlay1()
+        {
+            var ships = new[] { "3:2,3:5" };
+            var guesses = new[] { "3:2", "3:3", "3:4", "3:5" };
+            Game.Play(ships, guesses).Should().Be(1);
+        }
     }
 }

@@ -20,7 +20,50 @@ namespace Battleships
         // returns: the number of ships sunk by the set of guesses
         public static int Play(string[] ships, string[] guesses)
         {
-            return 0;
+            int gridRow = 10;
+            int gridColumn = 10;
+            string[,] grid = new String[gridRow, gridColumn];
+
+            int sunkShipsCount = 0;
+
+            foreach (var guess in guesses)
+            {
+                var guessRC = guess.Split(':');
+                int row = Int32.Parse(guessRC[0]);
+                int col = Int32.Parse(guessRC[1]);
+                grid[row, col] = "X";
+            }
+
+            foreach (String ship in ships)
+            {
+                // 3:2,3:5
+                // extract these to 
+                String[] shipRC = ship.Split(":,".ToCharArray());
+                Boolean ok = true;
+
+                int row1 = Int32.Parse(shipRC[0]);
+                int col1 = Int32.Parse(shipRC[1]);
+                int row2 = Int32.Parse(shipRC[2]);
+                int col2 = Int32.Parse(shipRC[3]);
+                
+                for (int row = row1; row <= row2; ++row)
+                {
+                    for (int col = col1; col <= col2; ++col)
+                    {
+                        if (grid[row, col] != "X")
+                        {
+                            ok = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (ok)
+                {
+                    ++sunkShipsCount;
+                }
+            }
+            return sunkShipsCount;
         }
     }
 }
