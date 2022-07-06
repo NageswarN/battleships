@@ -20,9 +20,9 @@ namespace Battleships
         // returns: the number of ships sunk by the set of guesses
         public static int Play(string[] ships, string[] guesses)
         {
-            int gridRow = 10;
-            int gridColumn = 10;
-            string[,] grid = new String[gridRow, gridColumn];
+            int rows = 10;
+            int columns = 10;
+            string[,] grid = new String[rows, columns];
 
             int sunkShipsCount = 0;
 
@@ -36,8 +36,6 @@ namespace Battleships
 
             foreach (String ship in ships)
             {
-                // 3:2,3:5
-                // extract these to 
                 String[] shipRC = ship.Split(":,".ToCharArray());
                 Boolean ok = true;
 
